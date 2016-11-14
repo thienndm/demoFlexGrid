@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+
+    <link href="/styles/vendor/bootstrap.min.css" rel="stylesheet" />
+    <link href="/styles/vendor/wijmo.min.css" rel="stylesheet" />
+
+    <script src="/scripts/vendor/angular.js"></script>
+    <script src="/scripts/vendor/wijmo.min.js"></script>
+    <script src="/scripts/vendor/wijmo.grid.min.js"></script>
+    <script src="/scripts/vendor/wijmo.angular.min.js"></script>
+
+    <script src="scripts/app.js"></script>
+    <script src="/scripts/controllers/HomeController.js"></script>
+    <script src="/scripts/services/HomeServices.js"></script>
+    <script src="scripts/services/flexgridService.js"></script>
+    <script src="scripts/services/baseService.js"></script>
+</head>
+<body>
+    <!-- mark this as an Angular application and give it a controller -->
+    <div ng-app="app" ng-controller="appCtrl">
+
+        <h1>Control and Initialized Attributes</h1>
+
+        <div class="row-fluid well btn-group">
+            <button class="btn btn-default" ng-click="data.moveCurrentToPrevious()">
+                Previous
+            </button>
+            <button class="btn btn-default" ng-click="data.moveCurrentToNext()">
+                Next
+            </button>
+            <!--<button class="btn btn-default" ng-click="stopCurrent()">
+                Stop at 4th Row
+            </button>-->
+            <button class="btn btn-default" ng-click="addNewRow()">
+                Add New Row
+            </button>
+            <button class="btn btn-default" ng-click="updateEditedRows()">
+                Update Edited Rows
+            </button>
+
+        </div>
+        
+        <p>This is a <b>FlexGrid</b> control. This time we will use the "initialized" attribute to create the columns:</p>
+        <wj-flex-grid id="mainFlexGrid"
+                      auto-generate-columns="false"
+                      initialized="init(s,e)"
+                      allow-add-new="true"
+                      allow-delete="true"
+                      cell-edit-ending="onCellEditEnding(s,e)"
+                      cell-edit-ended="onCellEditEnded(s,e)">
+        </wj-flex-grid>
+
+        <h5>See the changes here</h5>
+        <h6>Items edited:</h6>
+        <wj-flex-grid items-source="collectionView.itemsEdited"
+                      style="background:#eeeeff"
+                      is-read-only="true">
+            <wj-flex-grid-column binding="Make" header="Make">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column binding="Model" header="Model">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column binding="Year" header="Year">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column binding="Trim" header="Trim">
+            </wj-flex-grid-column>
+        </wj-flex-grid>
+
+        <h6>Items added:</h6>
+        <wj-flex-grid style="background:#eeeeff"
+                      items-source="collectionView.itemsAdded"
+                      is-read-only="true">
+            <wj-flex-grid-column binding="Make" header="Make">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column binding="Model" header="Model">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column binding="Year" header="Year">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column binding="Trim" header="Trim">
+            </wj-flex-grid-column>
+        </wj-flex-grid>
+
+        <h6>Items removed:</h6>
+        <wj-flex-grid style="background:#eeeeff"
+                      items-source="collectionView.itemsRemoved"
+                      is-read-only="true">
+            <wj-flex-grid-column binding="Make" header="Make">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column binding="Model" header="Model">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column binding="Year" header="Year">
+            </wj-flex-grid-column>
+            <wj-flex-grid-column binding="Trim" header="Trim">
+            </wj-flex-grid-column>
+        </wj-flex-grid>
+
+    </div>
+
+
+</body>
+</html>
